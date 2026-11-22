@@ -1,0 +1,599 @@
+{
+  "series_ko": "연구실 특별편 · 그리기와 렌더링",
+  "title_ko": "구조 먼저 그리기 연구실 01 · 옷장 편",
+  "site_url": "https://adminmrobo.github.io/structure_first_drawing_lab_01/",
+  "site_title": "구조 먼저 그리기 연구실 01 · 옷장 편 — 같은 원리, 다른 옷",
+  "ontology": {
+    "pages": [
+      {
+        "path": "index.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "01_photo_to_drawing.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "02_fit.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "03_material.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "04_motion.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "05_ai_vfx.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "06_failure_lab.html",
+        "kg": true,
+        "export": true
+      },
+      {
+        "path": "practice/index.html",
+        "kg": true,
+        "export": true
+      }
+    ],
+    "files": []
+  },
+  "i18n": {
+    "langs": [
+      "ko"
+    ],
+    "pages": {
+      "ko": 8
+    },
+    "readme_langs": [
+      "ko"
+    ]
+  },
+  "languages": [
+    "ko"
+  ],
+  "items": [
+    {
+      "id": "cover_index",
+      "role": "cover",
+      "path": "assets/img/cover_index.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C01_covers_A.md",
+      "style": "pixel",
+      "page": "index.html",
+      "status": "requested"
+    },
+    {
+      "id": "cover_01",
+      "role": "cover",
+      "path": "assets/img/cover_01.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C01_covers_A.md",
+      "style": "pixel",
+      "page": "01_photo_to_drawing.html",
+      "status": "requested"
+    },
+    {
+      "id": "cover_02",
+      "role": "cover",
+      "path": "assets/img/cover_02.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C01_covers_A.md",
+      "style": "pixel",
+      "page": "02_fit.html",
+      "status": "requested"
+    },
+    {
+      "id": "cover_03",
+      "role": "cover",
+      "path": "assets/img/cover_03.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C01_covers_A.md",
+      "style": "pixel",
+      "page": "03_material.html",
+      "status": "requested"
+    },
+    {
+      "id": "cover_04",
+      "role": "cover",
+      "path": "assets/img/cover_04.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C02_covers_B.md",
+      "style": "pixel",
+      "page": "04_motion.html",
+      "status": "requested"
+    },
+    {
+      "id": "cover_05",
+      "role": "cover",
+      "path": "assets/img/cover_05.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C02_covers_B.md",
+      "style": "pixel",
+      "page": "05_ai_vfx.html",
+      "status": "requested"
+    },
+    {
+      "id": "cover_06",
+      "role": "cover",
+      "path": "assets/img/cover_06.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C02_covers_B.md",
+      "style": "pixel",
+      "page": "06_failure_lab.html",
+      "status": "requested"
+    },
+    {
+      "id": "cover_07",
+      "role": "cover",
+      "path": "assets/img/cover_07.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C02_covers_B.md",
+      "style": "pixel",
+      "page": "practice/index.html",
+      "status": "requested"
+    },
+    {
+      "id": "p1_moa_photo_vs_drawing",
+      "role": "body",
+      "path": "assets/img/p1_moa_photo_vs_drawing.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "moa"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C03_part1_photo.md",
+      "style": "anime",
+      "page": "01_photo_to_drawing.html",
+      "status": "requested"
+    },
+    {
+      "id": "p1_moa_shadow_steps",
+      "role": "body",
+      "path": "assets/img/p1_moa_shadow_steps.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "moa"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C03_part1_photo.md",
+      "style": "anime",
+      "page": "01_photo_to_drawing.html",
+      "status": "requested"
+    },
+    {
+      "id": "p2_haru_tee_fit_compare",
+      "role": "body",
+      "path": "assets/img/p2_haru_tee_fit_compare.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "haru"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C04_part2_fit.md",
+      "style": "anime",
+      "page": "02_fit.html",
+      "status": "requested"
+    },
+    {
+      "id": "p2_haru_tee_poses",
+      "role": "body",
+      "path": "assets/img/p2_haru_tee_poses.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "haru"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C04_part2_fit.md",
+      "style": "anime",
+      "page": "02_fit.html",
+      "status": "requested"
+    },
+    {
+      "id": "p2_haru_loose_tee_shading",
+      "role": "body",
+      "path": "assets/img/p2_haru_loose_tee_shading.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [
+        "haru"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C04_part2_fit.md",
+      "style": "anime",
+      "page": "02_fit.html",
+      "status": "requested"
+    },
+    {
+      "id": "p3_moa_knit_vs_coat",
+      "role": "body",
+      "path": "assets/img/p3_moa_knit_vs_coat.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "moa",
+        "doctor"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C05_part3_material.md",
+      "style": "anime",
+      "page": "03_material.html",
+      "status": "requested"
+    },
+    {
+      "id": "p3_doctor_shirt_diamond",
+      "role": "body",
+      "path": "assets/img/p3_doctor_shirt_diamond.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [
+        "moa",
+        "doctor"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C05_part3_material.md",
+      "style": "anime",
+      "page": "03_material.html",
+      "status": "requested"
+    },
+    {
+      "id": "p3_moa_coat_memory",
+      "role": "body",
+      "path": "assets/img/p3_moa_coat_memory.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [
+        "moa",
+        "doctor"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C05_part3_material.md",
+      "style": "anime",
+      "page": "03_material.html",
+      "status": "requested"
+    },
+    {
+      "id": "p4_sia_walk_skirt",
+      "role": "body",
+      "path": "assets/img/p4_sia_walk_skirt.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [
+        "sia",
+        "doctor"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C06_part4_motion.md",
+      "style": "anime",
+      "page": "04_motion.html",
+      "status": "requested"
+    },
+    {
+      "id": "p4_sia_sit_bend",
+      "role": "body",
+      "path": "assets/img/p4_sia_sit_bend.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [
+        "sia",
+        "doctor"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C06_part4_motion.md",
+      "style": "anime",
+      "page": "04_motion.html",
+      "status": "requested"
+    },
+    {
+      "id": "p4_sia_bag_props",
+      "role": "body",
+      "path": "assets/img/p4_sia_bag_props.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "sia",
+        "doctor"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C06_part4_motion.md",
+      "style": "anime",
+      "page": "04_motion.html",
+      "status": "requested"
+    },
+    {
+      "id": "p5_outfit_swap_lineup",
+      "role": "body",
+      "path": "assets/img/p5_outfit_swap_lineup.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "haru",
+        "sia",
+        "moa"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C07_part5_ai_vfx.md",
+      "style": "anime",
+      "page": "05_ai_vfx.html",
+      "status": "requested"
+    },
+    {
+      "id": "p5_haru_inpaint_steps",
+      "role": "body",
+      "path": "assets/img/p5_haru_inpaint_steps.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "haru",
+        "sia",
+        "moa"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C07_part5_ai_vfx.md",
+      "style": "anime",
+      "page": "05_ai_vfx.html",
+      "status": "requested"
+    },
+    {
+      "id": "p5_vfx_fabric_presets",
+      "role": "body",
+      "path": "assets/img/p5_vfx_fabric_presets.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "characters": [
+        "haru",
+        "sia",
+        "moa"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C07_part5_ai_vfx.md",
+      "style": "anime",
+      "page": "05_ai_vfx.html",
+      "status": "requested"
+    },
+    {
+      "id": "p5_sia_style_pixel",
+      "role": "body",
+      "path": "assets/img/p5_sia_style_pixel.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [
+        "haru",
+        "sia",
+        "moa"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C08_part5_styles.md",
+      "style": "pixel",
+      "page": "05_ai_vfx.html",
+      "status": "requested"
+    },
+    {
+      "id": "p5_sia_style_anime",
+      "role": "body",
+      "path": "assets/img/p5_sia_style_anime.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [
+        "haru",
+        "sia",
+        "moa"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C08_part5_styles.md",
+      "style": "anime",
+      "page": "05_ai_vfx.html",
+      "status": "requested"
+    },
+    {
+      "id": "p5_sia_style_semireal",
+      "role": "body",
+      "path": "assets/img/p5_sia_style_semireal.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [
+        "haru",
+        "sia",
+        "moa"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C08_part5_styles.md",
+      "style": "semireal",
+      "page": "05_ai_vfx.html",
+      "status": "requested"
+    },
+    {
+      "id": "p5_sia_style_photo",
+      "role": "body",
+      "path": "assets/img/p5_sia_style_photo.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [
+        "haru",
+        "sia",
+        "moa"
+      ],
+      "prompt_file": "docs/image_requests/prompts/C08_part5_styles.md",
+      "style": "photo",
+      "page": "05_ai_vfx.html",
+      "status": "requested"
+    },
+    {
+      "id": "f1_traced_too_many",
+      "role": "fail",
+      "path": "assets/img/f1_traced_too_many.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C09_fail_A.md",
+      "style": "anime",
+      "page": "06_failure_lab.html",
+      "status": "requested"
+    },
+    {
+      "id": "f2_coat_like_silk",
+      "role": "fail",
+      "path": "assets/img/f2_coat_like_silk.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C09_fail_A.md",
+      "style": "anime",
+      "page": "06_failure_lab.html",
+      "status": "requested"
+    },
+    {
+      "id": "f3_loose_tee_clinging",
+      "role": "fail",
+      "path": "assets/img/f3_loose_tee_clinging.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C09_fail_A.md",
+      "style": "anime",
+      "page": "06_failure_lab.html",
+      "status": "requested"
+    },
+    {
+      "id": "f4_floating_strap",
+      "role": "fail",
+      "path": "assets/img/f4_floating_strap.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C09_fail_A.md",
+      "style": "anime",
+      "page": "06_failure_lab.html",
+      "status": "requested"
+    },
+    {
+      "id": "f5_fold_shadow_wrong_side",
+      "role": "fail",
+      "path": "assets/img/f5_fold_shadow_wrong_side.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C10_fail_B.md",
+      "style": "anime",
+      "page": "06_failure_lab.html",
+      "status": "requested"
+    },
+    {
+      "id": "f6_frill_against_flare",
+      "role": "fail",
+      "path": "assets/img/f6_frill_against_flare.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C10_fail_B.md",
+      "style": "anime",
+      "page": "06_failure_lab.html",
+      "status": "requested"
+    },
+    {
+      "id": "f7_pleats_both_sides",
+      "role": "fail",
+      "path": "assets/img/f7_pleats_both_sides.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C10_fail_B.md",
+      "style": "anime",
+      "page": "06_failure_lab.html",
+      "status": "requested"
+    },
+    {
+      "id": "f8_mask_changed_face",
+      "role": "fail",
+      "path": "assets/img/f8_mask_changed_face.webp",
+      "size": [
+        600,
+        900
+      ],
+      "characters": [],
+      "prompt_file": "docs/image_requests/prompts/C10_fail_B.md",
+      "style": "anime",
+      "page": "06_failure_lab.html",
+      "status": "requested"
+    }
+  ]
+}
