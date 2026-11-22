@@ -32,7 +32,7 @@
 
 ## 그림
 - 그림 34장(표지 8 + 본문 26)은 Genspark로 만듭니다. 요청문: `docs/image_requests/` (저장 이름은 `checklist.csv`).
-- 받은 그림은 `assets/img/{이름}.webp`로 넣고 `python3 build/build.py`를 다시 돌리면 '그림 준비 중' 자리가 채워집니다. 표지가 들어오면 `python3 build/make_og.py`로 공유 미리보기를 다시 만듭니다.
+- 34장 모두 반영 완료(2026-11-23). 그림을 바꿀 때는 `assets/img/{이름}.webp`를 교체하고 `python3 build/build.py`, 표지를 바꿨다면 `python3 build/make_og.py`를 다시 돌립니다.
 - 표지는 16비트 픽셀아트, 본문은 애니풍·반실사·실사풍을 허용합니다(이 시리즈 예외). 실사풍은 캐릭터를 코스프레한 가상의 성인 모델이며 실존 인물이 아닙니다.
 
 ## 빌드와 점검

@@ -75,7 +75,7 @@
       "prompt_file": "docs/image_requests/prompts/C01_covers_A.md",
       "style": "pixel",
       "page": "index.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "cover_01",
@@ -89,7 +89,7 @@
       "prompt_file": "docs/image_requests/prompts/C01_covers_A.md",
       "style": "pixel",
       "page": "01_photo_to_drawing.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "cover_02",
@@ -103,7 +103,7 @@
       "prompt_file": "docs/image_requests/prompts/C01_covers_A.md",
       "style": "pixel",
       "page": "02_fit.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "cover_03",
@@ -117,7 +117,7 @@
       "prompt_file": "docs/image_requests/prompts/C01_covers_A.md",
       "style": "pixel",
       "page": "03_material.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "cover_04",
@@ -131,7 +131,7 @@
       "prompt_file": "docs/image_requests/prompts/C02_covers_B.md",
       "style": "pixel",
       "page": "04_motion.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "cover_05",
@@ -145,7 +145,7 @@
       "prompt_file": "docs/image_requests/prompts/C02_covers_B.md",
       "style": "pixel",
       "page": "05_ai_vfx.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "cover_06",
@@ -159,7 +159,7 @@
       "prompt_file": "docs/image_requests/prompts/C02_covers_B.md",
       "style": "pixel",
       "page": "06_failure_lab.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "cover_07",
@@ -173,7 +173,7 @@
       "prompt_file": "docs/image_requests/prompts/C02_covers_B.md",
       "style": "pixel",
       "page": "practice/index.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p1_moa_photo_vs_drawing",
@@ -189,7 +189,7 @@
       "prompt_file": "docs/image_requests/prompts/C03_part1_photo.md",
       "style": "anime",
       "page": "01_photo_to_drawing.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p1_moa_shadow_steps",
@@ -205,7 +205,7 @@
       "prompt_file": "docs/image_requests/prompts/C03_part1_photo.md",
       "style": "anime",
       "page": "01_photo_to_drawing.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p2_haru_tee_fit_compare",
@@ -221,7 +221,7 @@
       "prompt_file": "docs/image_requests/prompts/C04_part2_fit.md",
       "style": "anime",
       "page": "02_fit.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p2_haru_tee_poses",
@@ -237,7 +237,7 @@
       "prompt_file": "docs/image_requests/prompts/C04_part2_fit.md",
       "style": "anime",
       "page": "02_fit.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p2_haru_loose_tee_shading",
@@ -253,7 +253,7 @@
       "prompt_file": "docs/image_requests/prompts/C04_part2_fit.md",
       "style": "anime",
       "page": "02_fit.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p3_moa_knit_vs_coat",
@@ -270,7 +270,7 @@
       "prompt_file": "docs/image_requests/prompts/C05_part3_material.md",
       "style": "anime",
       "page": "03_material.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p3_doctor_shirt_diamond",
@@ -287,7 +287,7 @@
       "prompt_file": "docs/image_requests/prompts/C05_part3_material.md",
       "style": "anime",
       "page": "03_material.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p3_moa_coat_memory",
@@ -304,7 +304,7 @@
       "prompt_file": "docs/image_requests/prompts/C05_part3_material.md",
       "style": "anime",
       "page": "03_material.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p4_sia_walk_skirt",
@@ -321,7 +321,7 @@
       "prompt_file": "docs/image_requests/prompts/C06_part4_motion.md",
       "style": "anime",
       "page": "04_motion.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p4_sia_sit_bend",
@@ -338,7 +338,7 @@
       "prompt_file": "docs/image_requests/prompts/C06_part4_motion.md",
       "style": "anime",
       "page": "04_motion.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p4_sia_bag_props",
@@ -355,7 +355,7 @@
       "prompt_file": "docs/image_requests/prompts/C06_part4_motion.md",
       "style": "anime",
       "page": "04_motion.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p5_outfit_swap_lineup",
@@ -373,7 +373,7 @@
       "prompt_file": "docs/image_requests/prompts/C07_part5_ai_vfx.md",
       "style": "anime",
       "page": "05_ai_vfx.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p5_haru_inpaint_steps",
@@ -391,7 +391,7 @@
       "prompt_file": "docs/image_requests/prompts/C07_part5_ai_vfx.md",
       "style": "anime",
       "page": "05_ai_vfx.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p5_vfx_fabric_presets",
@@ -409,7 +409,7 @@
       "prompt_file": "docs/image_requests/prompts/C07_part5_ai_vfx.md",
       "style": "anime",
       "page": "05_ai_vfx.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p5_sia_style_pixel",
@@ -427,7 +427,7 @@
       "prompt_file": "docs/image_requests/prompts/C08_part5_styles.md",
       "style": "pixel",
       "page": "05_ai_vfx.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p5_sia_style_anime",
@@ -445,7 +445,7 @@
       "prompt_file": "docs/image_requests/prompts/C08_part5_styles.md",
       "style": "anime",
       "page": "05_ai_vfx.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p5_sia_style_semireal",
@@ -463,7 +463,7 @@
       "prompt_file": "docs/image_requests/prompts/C08_part5_styles.md",
       "style": "semireal",
       "page": "05_ai_vfx.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "p5_sia_style_photo",
@@ -481,7 +481,7 @@
       "prompt_file": "docs/image_requests/prompts/C08_part5_styles.md",
       "style": "photo",
       "page": "05_ai_vfx.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "f1_traced_too_many",
@@ -495,7 +495,7 @@
       "prompt_file": "docs/image_requests/prompts/C09_fail_A.md",
       "style": "anime",
       "page": "06_failure_lab.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "f2_coat_like_silk",
@@ -509,7 +509,7 @@
       "prompt_file": "docs/image_requests/prompts/C09_fail_A.md",
       "style": "anime",
       "page": "06_failure_lab.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "f3_loose_tee_clinging",
@@ -523,7 +523,7 @@
       "prompt_file": "docs/image_requests/prompts/C09_fail_A.md",
       "style": "anime",
       "page": "06_failure_lab.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "f4_floating_strap",
@@ -537,7 +537,7 @@
       "prompt_file": "docs/image_requests/prompts/C09_fail_A.md",
       "style": "anime",
       "page": "06_failure_lab.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "f5_fold_shadow_wrong_side",
@@ -551,7 +551,7 @@
       "prompt_file": "docs/image_requests/prompts/C10_fail_B.md",
       "style": "anime",
       "page": "06_failure_lab.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "f6_frill_against_flare",
@@ -565,7 +565,7 @@
       "prompt_file": "docs/image_requests/prompts/C10_fail_B.md",
       "style": "anime",
       "page": "06_failure_lab.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "f7_pleats_both_sides",
@@ -579,7 +579,7 @@
       "prompt_file": "docs/image_requests/prompts/C10_fail_B.md",
       "style": "anime",
       "page": "06_failure_lab.html",
-      "status": "requested"
+      "status": "done"
     },
     {
       "id": "f8_mask_changed_face",
@@ -593,7 +593,7 @@
       "prompt_file": "docs/image_requests/prompts/C10_fail_B.md",
       "style": "anime",
       "page": "06_failure_lab.html",
-      "status": "requested"
+      "status": "done"
     }
   ]
 }
