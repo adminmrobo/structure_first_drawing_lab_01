@@ -37,6 +37,9 @@
 - 34장 모두 반영 완료(2026-11-23). 그림을 바꿀 때는 `assets/img/{이름}.webp`를 교체하고 `python3 build/build.py`, 표지를 바꿨다면 `python3 build/make_og.py`를 다시 돌립니다.
 - 표지는 16비트 픽셀아트, 본문은 애니풍·반실사·실사풍을 허용합니다(이 시리즈 예외). 실사풍은 캐릭터를 코스프레한 가상의 성인 모델이며 실존 인물이 아닙니다.
 
+## 작성 방침
+이 사이트의 최종 작성 방침은 `docs/WRITING_POLICY.md`에 있습니다.
+
 ## 빌드와 점검
 ```
 python3 build/build.py          # 페이지 만들기 (assets/panels.js는 build/js_*.js를 이어 붙여 만든다)
