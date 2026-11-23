@@ -6,6 +6,8 @@ import json, os, html, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from content_a import P1, P2, P3
 from content_b import P4, P5, P6
+from content_make import MAKE
+from make_requests import PROMPTS, CONV_OF, ATTACH_OF
 STYLES = [("pixel", "픽셀"), ("anime", "애니풍"), ("semireal", "반실사"), ("photo", "실사풍")]
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -94,8 +96,8 @@ def cover(key, cap, cast, pre=""):
 
 def three(a, b, c, abbr):
     dl = "".join(f"<dt>{E(x)}</dt><dd>{E(y)}</dd>" for x, y in abbr)
-    return f"""<div class="three"><h2>처음 오신 분께 — 이 페이지를 3줄로</h2><ul>
-<li><b>무엇을</b>: {E(a)}</li><li><b>왜 중요한가</b>: {E(b)}</li><li><b>작업에서는</b>: {E(c)}</li></ul>
+    return f"""<div class="three"><h2>처음 오신 분께 — 세 줄 요약</h2><ul>
+<li><b>무엇을</b>: {E(a)}</li><li><b>왜 알아야 하나</b>: {E(b)}</li><li><b>어디에 쓰나</b>: {E(c)}</li></ul>
 <p>그림 실력·코드·수식을 몰라도 됩니다. 실험을 눌러 보며 따라오세요.</p>
 <details class="abbr"><summary>낱말·약어 풀이 (펼치기)</summary><dl>{dl}</dl></details></div>\n"""
 
@@ -122,7 +124,7 @@ def panel(no, i, p):
 def mathbox(m):
     tries = "".join(f"<div>{E(t)}</div>" for t in m["tries"])
     pcs = "".join(f"<tr><td class='m'>{E(a)}</td><td>{E(b)}</td></tr>" for a, b in m["pieces"])
-    return f"""<div class="box mathbox"><h4>수학 수식을 어려워하는 조수가 대신 물어봅니다</h4>
+    return f"""<div class="box mathbox"><h4>수식이 어려운 조수가 대신 묻습니다</h4>
 <div class="q">{face('haru','e04')}<div><b>조수</b> {E(m['ask'])}</div></div>
 <div class="easy"><b>말로 하면</b> — {E(m['words'])}</div>
 <p><b>학교 수학으로 보면</b> — {E(m['school'])}</p>
@@ -148,9 +150,9 @@ No text, no letters, no logos, no watermark, no revealing clothing, not resembli
 
 def step(P, i, s):
     no = P["no"]
-    labels = ["문제", "앞 방법의 한계", "해법"]
+    labels = ["무엇이 문제인가", "그냥 하면 막히는 곳", "이렇게 푼다"]
     why = "".join(f"<li><b>{labels[k]}</b> — {E(x)}</li>" for k, x in enumerate(s["why"]))
-    whybox = f'<div class="box why"><h4>왜 이 방법을 쓰나</h4><ol>{why}</ol><div class="easy"><b>쉽게 말하면</b> — {E(s["easy"])}</div></div>'
+    whybox = f'<div class="box why"><h4>왜 이렇게 하나</h4><ol>{why}</ol><div class="easy"><b>쉽게 말하면</b> — {E(s["easy"])}</div></div>'
     calm = talk([("doctor", "e08", "여기서 한 번 멈춰도 괜찮아요. 식이 낯설면 건너뛰고 아래 실험부터 눌러 보세요. 숫자는 실험이 대신 계산해 줍니다.")])
     duo = f'<div class="duo">{whybox}{mathbox(s["math"])}</div>{calm}' if s.get("math") else f'<div style="margin:16px 0">{whybox}</div>'
     solve = "".join(f"<p>{E(x)}</p>" for x in s["solve"])
@@ -173,8 +175,8 @@ def step(P, i, s):
 {panel(no, i, s['panel'])}
 <div class="solve"><h4>풀이</h4>{solve}</div>
 {extra}{img}
-<div class="solve"><h4>AI 판단 코너 — 그대로 믿어도 될까?</h4><p>{E(s['ai'][0])}</p><details class="code"><summary>확인해 보기</summary><p>{E(s['ai'][1])}</p></details></div>
-<div class="limit"><b>이 단계의 한계</b> — {E(s['limit'])}</div>
+<div class="solve"><h4>AI 결과, 그대로 써도 될까?</h4><p>{E(s['ai'][0])}</p><details class="code"><summary>답 보기</summary><p>{E(s['ai'][1])}</p></details></div>
+<div class="limit"><b>주의할 점</b> — {E(s['limit'])}</div>
 {quiz(q[0], q[1], q[2], q[3], q[4])}
 </div></section>
 """
@@ -189,7 +191,7 @@ def judge(J):
     tbl = "".join(f"<tr><td>{E(it)}</td><td>{J['a'][1][k]}</td><td>{J['b'][1][k]}</td></tr>" for k, it in enumerate(J["items"]))
     return f"""<section class="room" id="judge"><div class="wrap"><div class="roomno">평가단 채점</div><h2>{E(J['title'])}</h2>
 {talk(J['setup'])}
-<div class="judge"><h4>평가단 X1·X2·X3의 점수</h4>
+<div class="judge"><h4>평가단 X1·X2·X3 채점</h4>
 <div class="score"><span></span><b>{E(J['a'][0])}</b><b>{E(J['b'][0])}</b>{rows}</div>
 <div class="tbl" style="margin-top:10px"><table><thead><tr><th>항목</th><th>{E(J['a'][0])}</th><th>{E(J['b'][0])}</th></tr></thead><tbody>{tbl}<tr><th>합계</th><th>{sa}</th><th>{sb}</th></tr></tbody></table></div>
 {talk(J['comments'])}</div>
@@ -224,7 +226,7 @@ KG = [
  ("concept/detail-level", "Concept", "그림체와 정보량", "Detail level by drawing style", "01_photo_to_drawing.html", "#s2", "실사풍은 잔주름을 더하고 단순풍은 덜어 덩어리로"),
  ("method/shadow-order", "Method", "그림자 다섯 단계", "Five-step shadow layering", "01_photo_to_drawing.html", "#s3", "떨어지는·약속된 → 입체 → 섬 → 진한 2차 → 정리"),
  ("concept/soft-edge", "Concept", "그림자 경계 흐림", "Soft shadow edges on rounded forms", "01_photo_to_drawing.html", "#s4", "흐린 폭 ≈ 둥근 반지름 × 경계 각도 폭"),
- ("concept/ease", "Concept", "여유율", "Garment ease", "02_fit.html", "#s1", "(옷 둘레 − 몸 둘레) ÷ 몸 둘레, 남는 천이 주름 수를 정한다"),
+ ("concept/ease", "Concept", "여유율", "Garment ease", "02_fit.html", "#s1", "(옷 둘레 − 몸 둘레) ÷ 몸 둘레, 남는 천만큼 주름이 생긴다"),
  ("concept/contact-points", "Concept", "자세별 접점", "Contact points by pose", "02_fit.html", "#s2", "자세가 바뀌면 천이 걸리는 시작점이 바뀐다"),
  ("concept/hem-rise", "Concept", "몸의 볼륨과 밑단", "Hem rise over body volume", "02_fit.html", "#s3", "튀어나온 곳을 돌아가는 길이만큼 밑단이 올라간다"),
  ("method/shadow-instead-of-line", "Method", "선 대신 그림자", "Replacing lines with fold shadows", "02_fit.html", "#s4", "주름 산의 빛 반대쪽 비탈에만 그림자"),
@@ -235,11 +237,11 @@ KG = [
  ("concept/skirt-airflow", "Concept", "걸을 때 치마의 공기", "Skirt lift from airflow", "04_motion.html", "#s1", "들림 ∝ 속도², 밑단은 움직임 반대쪽으로"),
  ("concept/pleat-visibility", "Concept", "주름치마의 보이는 뒷면", "Visible faces of side pleats", "04_motion.html", "#s2", "cos(사이각) > 0인 면만 보인다"),
  ("concept/bend-length", "Concept", "굽힘의 안팎 길이 차이", "Inner and outer length at a bent joint", "04_motion.html", "#s3", "길이 차이 = 두께 × 굽힌 각(라디안)"),
- ("concept/prop-contacts", "Concept", "소품이 만드는 접점", "Contacts created by props", "04_motion.html", "#s4", "가방 끈·백팩·셔츠 넣기·넥타이가 새 시작점이 된다"),
+ ("concept/prop-contacts", "Concept", "소품이 닿는 곳의 접점", "Contacts created by props", "04_motion.html", "#s4", "가방 끈·백팩·셔츠 넣기·넥타이가 새 시작점이 된다"),
  ("method/outfit-prompt", "Method", "옷 고정 문장", "Structured outfit prompt", "05_ai_vfx.html", "#s1", "종류·핏·소재·동작과 접점·주름·금지"),
  ("method/inpaint-mask", "Method", "가림 영역으로 옷만 다시 그리기", "Inpainting with a clothing mask", "05_ai_vfx.html", "#s2", "바뀌는 비율 = 가린 넓이 ÷ 전체 넓이"),
  ("method/cloth-presets", "Method", "VFX 소재표", "Cloth simulation material presets", "05_ai_vfx.html", "#s3", "무게·뻣뻣함·늘어남을 숫자로"),
- ("method/style-detail", "Method", "화풍별 주름의 양", "Fold detail per art style", "05_ai_vfx.html", "#s4", "위치는 원리가, 양은 화풍이 정한다"),
+ ("method/style-detail", "Method", "화풍별 주름의 양", "Fold detail per art style", "05_ai_vfx.html", "#s4", "위치는 원리에 따라, 양은 화풍에 따라"),
  ("method/garment-diagnosis", "Method", "옷 그림 진단 순서", "Garment drawing diagnosis checklist", "06_failure_lab.html", "#s1", "접점·흐름 → 핏 → 소재 → 빛 → 정보량·가림"),
  ("application/garment-failures", "Application", "옷 그림 실패 8종", "Eight garment drawing failures", "06_failure_lab.html", "#fails", "잔주름 과다·소재 뒤바뀜·핏 무시·접점 무시·그림자 반대·프릴 역방향·주름치마 양면·가림 과다"),
  ("open/garment-age-drift", "OpenQuestion", "옷 이름이 나이를 바꾸는 현상", "Garment words shifting apparent age", "06_failure_lab.html", "#drift", "학교 옷 이름 대신 소재·핏·형태와 나이를 적는다"),
@@ -279,9 +281,9 @@ def kg_block(page, pages):
                       "skos:definition": n["definition"]["ko"], "schema:url": SITE + n["page"] + n["anchor"]} for n in nodes]}
     meta = dict(title=page, series=SERIES, creator=[dict(name="안상선", role="author", affiliation="(주)M-Robo")], date=DATE, version=VER, license="캐릭터·그림 무단 사용 금지")
     J = lambda o: json.dumps(o, ensure_ascii=False).replace("</", "<\\/")
-    return f"""<section id="kg"><div class="wrap"><h2>지식 색인 — 이 페이지에서 찾아보기</h2>
+    return f"""<section id="kg"><div class="wrap"><h2>지식 색인 — 이 페이지의 낱말 찾기</h2>
 <p class="muted">이 페이지에 나온 개념·방법·비유·쓰임을 모았습니다. 검색하고, "설명 보러 가기"로 본문에 돌아갑니다.</p><div id="kg-mount"></div></div></section>
-<section id="export"><div class="wrap"><h2>온톨로지·서지 꾸러미 — 이 페이지의 지식을 가져가기</h2>
+<section id="export"><div class="wrap"><h2>온톨로지·서지 꾸러미 내려받기</h2>
 <p class="muted">지식 색인을 출처와 함께 파일로 내려받습니다. 서지 관리는 BibTeX·RIS, 온톨로지 편집은 Turtle, 그래프 도구는 CSV, 여러 페이지 합치기는 kg.json입니다.</p><div id="export-mount"></div></div></section>
 <script type="application/json" id="kg-raw">{J(raw)}</script>
 <script type="application/ld+json" id="kg-ld">{J(ld)}</script>
@@ -296,7 +298,7 @@ def footer(pre=""):
     refs = "".join(f"<tr><td>[{i+1}]</td><td>{E(r['author'])} ({r['year']}). {E(r['title'])}</td><td>{E(r['note'])}</td></tr>" for i, r in enumerate(REFS))
     return f"""<footer><div class="wrap">
 <h3>출처·참고</h3>
-<div class="tbl"><table><thead><tr><th>#</th><th>자료</th><th>이 시리즈에서 쓴 곳</th></tr></thead><tbody>{refs}</tbody></table></div>
+<div class="tbl"><table><thead><tr><th>#</th><th>자료</th><th>어디에 썼나</th></tr></thead><tbody>{refs}</tbody></table></div>
 <h3>예시값·설명용 숫자</h3>
 <p>주름 세기, 여유율, 몸 치수, 부드러움 계수, 자국 비율 p, 들림 높이, 소재값, 화풍별 주름 개수, 평가단 점수는 모두 원리를 보이기 위한 예시값입니다. 실제 값은 옷·도구마다 다릅니다.</p>
 <p>등장인물은 모두 20대 성인 연구원입니다. 실사풍 그림은 캐릭터를 코스프레한 가상의 성인 모델이며 실존 인물이 아닙니다. 다른 작품의 캐릭터를 닮은 그림은 만들지 않습니다.</p>
@@ -308,12 +310,44 @@ def footer(pre=""):
 </body></html>
 """
 
+REFS_DL = ["haru_anime_base.png", "sia_anime_base.png", "moa_anime_base.png", "haru_sheet.png", "sia_sheet.png", "moa_sheet.png", "doctor_sheet.png", "fruitfly_sprites_6.png", "jupanbot_ref_genspark_v0.png", "pixel_style_ref_prev_cover.png"]
+def make_section(P):
+    tasks = MAKE.get(P["no"])
+    if not tasks:
+        return ""
+    refs = " · ".join(f'<a href="assets/refs/{f}" download>{f.replace(".png", "")}</a>' for f in REFS_DL)
+    out = f"""<section class="room" id="make"><div class="wrap"><div class="roomno">{P['no']}부 · 직접 만들기</div><h2>프롬프트로 직접 만들어 보기</h2>
+<div class="box"><p>이 부에서 배운 원리를 그림 생성 AI(Genspark 등)로 직접 확인합니다. <b>A</b>는 이 페이지 그림을 실제로 만든 프롬프트, <b>B</b>는 원리를 하나 빼거나 바꾼 비교용 문장입니다.</p>
+<ol style="margin:6px 0 0;padding-left:20px"><li>새 대화를 열고 아래 '첨부'에 적힌 참고 그림을 올립니다.</li><li>A를 붙여 넣어 만들고, 확인표로 결과를 점검합니다.</li><li>같은 대화에 B를 이어 붙여 다시 만들고, A 결과와 나란히 비교합니다.</li><li>결과는 매번 다릅니다. 두세 번 만들어 가장 나은 것을 고르세요.</li></ol>
+<p class="hint" style="margin-top:8px">참고 그림 내려받기: {refs}</p></div>"""
+    for i, t in enumerate(tasks, 1):
+        A = PROMPTS[t["key"]][4]
+        att = ATTACH_OF[CONV_OF[t["key"]]]
+        ar = "16/9" if "16:9" in A.split("\n")[0] else "2/3"
+        alt = PROMPTS[t["img"]][3]
+        chk = "".join(f'<li>{E(c)}' + (f' <a href="{l}">원리 보기</a>' if l else "") + "</li>" for c, l in t["check"])
+        bimgs = ""
+        if t["b_imgs"]:
+            bimgs = '<div class="artrow">' + "".join(art(k, ("비교 결과 — " + t["b_title"]) if k not in PROMPTS else PROMPTS[k][3], ar if not k.startswith(("p1_moa_shadow_step", "p5_haru_inpaint_real", "f2_fixed", "f8_fixed")) else "2/3", "B 결과" if len(t["b_imgs"]) == 1 else f"B 결과 {j}") for j, k in enumerate(t["b_imgs"], 1)) + "</div>"
+        tip = f'<p class="hint">{E(t["tip"])}</p>' if t.get("tip") else ""
+        bbox = f'<div class="promptbox"><b>{E(t["b_title"])}</b><pre>{E(t["b_text"])}</pre><button type="button" class="btn copy">복사하기</button></div>'
+        if len(t["b_imgs"]) == 1:
+            k = t["b_imgs"][0]
+            bpart = f'<div class="pair">{bbox}<div>{art(k, ("비교 결과 — " + t["b_title"]) if k not in PROMPTS else PROMPTS[k][3], "2/3" if k.startswith(("p5_haru_inpaint_real", "f2_fixed")) else ar, "B 결과")}</div></div>'
+        else:
+            bpart = bbox + bimgs
+        out += f"""<div class="failcard" id="make{i}"><h3>실습 {i} · {E(t['title'])}</h3><p>{E(t['goal'])}</p>
+<div class="pair"><div class="promptbox"><b>A — 이 페이지 그림을 만든 프롬프트</b><p class="hint">첨부: {E(att)}</p><pre>{E(A)}</pre><button type="button" class="btn copy">복사하기</button></div>
+<div>{art(t['img'], alt, ar, "A 결과 — Genspark로 만든 실제 그림")}</div></div>
+{bpart}<h4>결과에서 확인할 것</h4><ol>{chk}</ol>{tip}</div>"""
+    return out + "</div></section>"
+
 def build_part(P):
     t = f"{SERIES} {P['no']}부 — {P['title']}"
     s = head(t, P["desc"], P["og"], P["file"])
     navl = [(f"#{x['id']}", f"{k+1}단계") for k, x in enumerate(P["steps"])]
     if P.get("fails"): navl += [("#fails", "실패 8종")]
-    navl += [("#judge", "평가"), ("#sum", "정리"), (P["next"][0], "다음 →")]
+    navl += [("#make", "직접 만들기"), ("#judge", "평가"), ("#sum", "정리"), (P["next"][0], "다음 →")]
     s += nav(navl)
     s += cover(P["cover_key"], P["cover_cap"], P["cover_cast"])
     s += f"""<header class="hero"><div class="wrap"><span class="kicker">{E(P['kicker'])}</span><h1>{E(P['title'])}</h1><p class="lead">{E(P['lead'])}</p>
@@ -328,6 +362,7 @@ def build_part(P):
         s += "".join(failcard(f) for f in P["fails"])
         d = P["drift"]
         s += f'<div class="failcard" id="drift"><h3>{E(d["title"])}</h3>' + "".join(f"<p>{E(x)}</p>" for x in d["body"]) + '<p><span class="chip">연결된 원리</span><a href="05_ai_vfx.html#s1">5부 1단계 옷 고정 문장</a></p></div></div></section>'
+    s += make_section(P)
     s += judge(P["judge"]) + summary(P) + outro(P)
     s += kg_block(P["file"].replace(".html", ""), [P["file"]])
     s += footer()
@@ -338,7 +373,7 @@ FLOW = [
  (2, "붙는 옷과 헐렁한 옷", "옮기는 순서를 알아도 핏이 다르면 주름 수가 다르다", "여유율·접점·몸의 볼륨"),
  (3, "소재감", "핏이 같아도 니트와 코트는 주름이 다르다", "두께·꺾임·버릇 주름·겹쳐 입기"),
  (4, "움직임과 주름", "서 있는 옷을 움직이는 장면에 쓰면 얼어붙어 보인다", "공기·접힌 뒷면·굽힘·소품"),
- (5, "AI와 VFX로 옷 갈아입히기", "AI와 VFX는 원리를 모른다. 말과 숫자로 건네야 한다", "옷 문장·가림 영역·소재표·화풍별 양"),
+ (5, "AI와 VFX로 옷 갈아입히기", "AI와 VFX 도구는 원리를 모른다. 말과 숫자로 정확히 알려 줘야 한다", "옷 문장·가림 영역·소재표·화풍별 양"),
  (6, "실패 사례 실험실", "프롬프트를 써도 옷은 틀릴 수 있다", "진단 순서와 고치는 조각"),
  (7, "실전 연습장", "배운 것을 한 화면에서 함께 다뤄 본다", "피팅룸·소재 실험실·공방·진단"),
 ]
@@ -355,7 +390,7 @@ def build_index():
     t = f"{SERIES} — 같은 원리, 다른 옷"
     d = "사진 속 옷을 그림으로 옮기는 순서, 핏·체형·소재·동작에 따라 달라지는 주름을 실험으로 익히고, AI 프롬프트·가림 영역·VFX 천 시뮬레이션으로 옷을 갈아입혀 봅니다. 옷 그림 실패 8종 진단까지."
     s = head(t, d, "og_index.jpg", "index.html")
-    s += nav([("#howto", "읽는 법"), ("#parts", "편 목록"), ("#map", "큰 그림"), ("#cast", "등장인물"), ("#source", "원리와 출처")])
+    s += nav([("#howto", "읽는 법"), ("#parts", "편 목록"), ("#map", "전체 흐름"), ("#cast", "등장인물"), ("#source", "원리와 출처")])
     s += cover("cover_index", "연구실 옷장 · 화가 둘, 모델 셋, 손님 모델 박사, 평가단 셋", [("fruitfly", "e09"), ("haru", "e01"), ("sia", "e13"), ("moa", "e19"), ("jupanbot", "e16")])
     s += f"""<header class="hero"><div class="wrap"><span class="kicker">연구실 특별편 · 그리기와 렌더링 · 두 번째 시리즈</span>
 <h1>구조 먼저 그리기 연구실 01<br>옷장 편 — 같은 원리, 다른 옷</h1>
@@ -378,8 +413,8 @@ def build_index():
 <a class="card" href="06_failure_lab.html">{face("jupanbot","e20")}<span class="n">6부 · 의도적 실패 8종</span><h3>실패 사례 실험실</h3><p>증상 → 원인 → 원리 → 고치는 조각. 옷 그림 진단 순서.</p></a>
 <a class="card" href="practice/index.html">{face("x2","e16")}<span class="n">7부 · 마지막 장</span><h3>실전 연습장</h3><p>피팅룸·소재 실험실·옷 문장 공방·진단 데스크를 직접 운영합니다.</p></a>
 </div></div></section>
-<section id="map"><div class="wrap"><h2>큰 그림 — 앞 부의 한계가 다음 부의 이유</h2>{flow_strip()}
-<div class="tbl" style="margin-top:16px"><table><thead><tr><th>부</th><th>제목</th><th>앞 부의 한계 → 이 부가 필요한 이유</th><th>핵심</th></tr></thead><tbody>
+<section id="map"><div class="wrap"><h2>전체 흐름 — 1부부터 7부까지 이어지는 순서</h2>{flow_strip()}
+<div class="tbl" style="margin-top:16px"><table><thead><tr><th>부</th><th>제목</th><th>이 부를 배우는 까닭</th><th>핵심</th></tr></thead><tbody>
 {''.join(f"<tr><td>{n}</td><td>{E(t)}</td><td>{E(a)}</td><td>{E(b)}</td></tr>" for n, t, a, b in FLOW)}</tbody></table></div>
 <p class="muted" style="margin-top:12px">기초부터 보고 싶다면: <a href="{PREV_SITE}">구조 먼저 보는 캐릭터 그리기 연구실(구조·빛·주름·확산 모델)</a> · <a href="{RENDER}">AI 렌더링 연구실</a></p></div></section>
 <section id="cast"><div class="wrap"><h2>등장인물</h2><div class="cast-grid">{''.join(f'<div class="who">{face(k, "e01" if k in ("haru","sia","moa") else "e13")}<b>{E(CH[k][0])}</b><span>{E(CH[k][1])}</span></div>' for k in ["doctor","haru","sia","moa","jupanbot","fruitfly","x1","x2","x3"])}</div>
@@ -439,8 +474,9 @@ def build_practice():
             ["3개 연속 정답", "8종 원인을 모두 한 번 이상 맞히기", "틀리지 않고 5개 맞히기"],
             [("06_failure_lab.html#s1", "6부 진단 순서"), ("06_failure_lab.html#fails", "6부 실패 8종")])
     s += f"""</div></section>
-<section id="wrap"><div class="wrap"><h2>마무리 — 네 작업장이 함께 묻는 질문</h2>
+<section id="wrap"><div class="wrap"><h2>마무리 — 네 작업장을 하나로 묶으면</h2>
 <div class="box"><p>피팅룸에서 정한 여유율과 자세는 공방의 옷 문장에서 '핏'과 '동작·접점'이 되고, 소재 실험실의 값은 '소재' 문장과 VFX 소재표가 됩니다. 진단 데스크에서 틀린 원인은 대부분 앞의 세 곳 중 하나가 빠진 경우입니다. 옷 그림은 결국 <b>천이 어디에 걸려(접점), 얼마나 남아서(핏), 어떻게 접히는가(소재·동작)</b>의 기록입니다.</p>
+<p><b>실제 그림으로 이어 가기</b> — 옷 문장 공방에서 조립한 문장을 복사해 그림 생성 AI에 넣어 보세요. 결과는 각 부의 '프롬프트로 직접 만들어 보기' 확인표로 점검합니다: <a href="{pre}01_photo_to_drawing.html#make">1부</a> · <a href="{pre}02_fit.html#make">2부</a> · <a href="{pre}03_material.html#make">3부</a> · <a href="{pre}04_motion.html#make">4부</a> · <a href="{pre}05_ai_vfx.html#make">5부</a> · <a href="{pre}06_failure_lab.html#make">6부</a></p>
 <p class="hint">한계: 이 연습장의 주름 수·밑단 높이·천 계산은 원리를 보이기 위해 크게 단순화했습니다. 숫자는 교육용 예시이며, 실제 옷과 도구의 값과 다릅니다.</p></div>
 <div class="next"><a href="{pre}06_failure_lab.html">← 6부 실패 사례 실험실</a><a href="{pre}index.html">목차로</a></div></div></section>
 """

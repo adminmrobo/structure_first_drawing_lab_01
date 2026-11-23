@@ -149,17 +149,22 @@ CONV = [("C01_covers_A", "표지 A (픽셀아트, 16:9)", "16:9", "refs 전부",
         ("C09_fail_A", "6부 실패 A", "2:3", "해당 캐릭터의 refs/*_anime_base.png", C9), ("C10_fail_B", "6부 실패 B", "2:3", "해당 캐릭터의 refs/*_anime_base.png", C10)]
 HEAD_PIX = "웹페이지 맨 위에 거는 표지 그림을 한 장씩 차례로 만들어 줘.\n- 비율 16:9, 가로 1920px 이상\n- 그림체는 반드시 16비트 RPG풍 픽셀아트 (네모 픽셀이 보이게, 매끈한 일러스트·벡터·수채화·3D 금지)\n- 첨부한 참고 이미지의 캐릭터를 같은 외형으로 그릴 것\n- 그림 안에 글자·숫자·로고 금지\n- 얼굴과 손은 가장자리에서 떨어진 가운데 영역에, 왼쪽 아래 구석은 밝고 단순하게\n아래 영어 프롬프트를 하나씩 써 줘."
 HEAD_ANI = "해설 페이지 본문에 넣을 그림을 한 장씩 차례로 만들어 줘.\n- 비율은 각 프롬프트 첫 줄을 따를 것(16:9는 가로 1920px 이상, 2:3은 세로 1536px 이상)\n- 첨부한 참고 이미지의 캐릭터 외형(얼굴·머리·색·장식)을 똑같이 지킬 것\n- 등장인물은 모두 20대 성인(박사는 성인 남성). 노출·과장된 체형·교복 느낌 금지\n- 그림 안에 글자·숫자·로고 금지, 유명 애니 캐릭터와 닮으면 다시 만들 것\n아래 영어 프롬프트를 하나씩 써 줘."
-os.makedirs(os.path.join(D, "prompts"), exist_ok=True)
-rows = []; n = 0
-for cid, title, ratio, att, items in CONV:
-    pix = items[0][5] == "pixel"
-    md = f"# {cid[:3]} · {title} — " + ", ".join(i[0] for i in items) + f"\n\n**첨부:** {att}\n\n**Genspark에 먼저 붙여 넣기 ↓**\n```\n{HEAD_PIX if pix else HEAD_ANI}\n```\n"
-    for k, (file, page, part, alt, prompt, style) in enumerate(items):
-        n += 1; rows.append([n, cid[:3], file, page, part, "16:9" if "16:9" in prompt.split("\n")[0] else "2:3", style, ""])
-        md += f"\n---\n## {k+1}) {file} — {part}\nalt: {alt}\n```\n{prompt}\n```\n"
-    if cid.startswith("C09") or cid.startswith("C10"):
-        md += "\n---\n**실패 그림 주의:** 도구가 실수를 자동으로 고쳐 버리면 두 번까지만 다시 시도해 주세요. 그래도 안 되면 그대로 주셔도 됩니다(페이지에서 '결과는 매번 달라진다'는 사례로 설명합니다).\n"
-    open(os.path.join(D, "prompts", cid + ".md"), "w").write(md)
-with open(os.path.join(D, "checklist.csv"), "w", newline="") as f:
-    w = csv.writer(f); w.writerow(["order", "conversation", "file", "page", "part", "ratio", "style", "status"]); w.writerows(rows)
-print("prompts", len(CONV), "images", n)
+PROMPTS = {it[0]: it for _c in CONV for it in _c[4]}
+CONV_OF = {it[0]: _c[0] for _c in CONV for it in _c[4]}
+ATTACH_OF = {_c[0]: _c[3] for _c in CONV}
+
+if __name__ == "__main__":
+    os.makedirs(os.path.join(D, "prompts"), exist_ok=True)
+    rows = []; n = 0
+    for cid, title, ratio, att, items in CONV:
+        pix = items[0][5] == "pixel"
+        md = f"# {cid[:3]} · {title} — " + ", ".join(i[0] for i in items) + f"\n\n**첨부:** {att}\n\n**Genspark에 먼저 붙여 넣기 ↓**\n```\n{HEAD_PIX if pix else HEAD_ANI}\n```\n"
+        for k, (file, page, part, alt, prompt, style) in enumerate(items):
+            n += 1; rows.append([n, cid[:3], file, page, part, "16:9" if "16:9" in prompt.split("\n")[0] else "2:3", style, ""])
+            md += f"\n---\n## {k+1}) {file} — {part}\nalt: {alt}\n```\n{prompt}\n```\n"
+        if cid.startswith("C09") or cid.startswith("C10"):
+            md += "\n---\n**실패 그림 주의:** 도구가 실수를 자동으로 고쳐 버리면 두 번까지만 다시 시도해 주세요. 그래도 안 되면 그대로 주셔도 됩니다(페이지에서 '결과는 매번 달라진다'는 사례로 설명합니다).\n"
+        open(os.path.join(D, "prompts", cid + ".md"), "w").write(md)
+    with open(os.path.join(D, "checklist.csv"), "w", newline="") as f:
+        w = csv.writer(f); w.writerow(["order", "conversation", "file", "page", "part", "ratio", "style", "status"]); w.writerows(rows)
+    print("prompts", len(CONV), "images", n)
