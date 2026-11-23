@@ -330,6 +330,8 @@ def make_section(P):
         if t["b_imgs"]:
             bimgs = '<div class="artrow">' + "".join(art(k, ("비교 결과 — " + t["b_title"]) if k not in PROMPTS else PROMPTS[k][3], ar if not k.startswith(("p1_moa_shadow_step", "p5_haru_inpaint_real", "f2_fixed", "f8_fixed")) else "2/3", "B 결과" if len(t["b_imgs"]) == 1 else f"B 결과 {j}") for j, k in enumerate(t["b_imgs"], 1)) + "</div>"
         tip = f'<p class="hint">{E(t["tip"])}</p>' if t.get("tip") else ""
+        if t.get("res"):
+            tip = f'<p style="background:#fff7ec;border-left:4px solid var(--orange);padding:8px 12px;border-radius:6px">{E(t["res"])}</p>' + tip
         bbox = f'<div class="promptbox"><b>{E(t["b_title"])}</b><pre>{E(t["b_text"])}</pre><button type="button" class="btn copy">복사하기</button></div>'
         if len(t["b_imgs"]) == 1:
             k = t["b_imgs"][0]
