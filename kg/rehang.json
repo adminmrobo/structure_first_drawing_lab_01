@@ -1,0 +1,168 @@
+{
+ "version": "1.0",
+ "made": "2026-11-24",
+ "via": "rehang-2026-11-24",
+ "domains": [
+  "art",
+  "genai"
+ ],
+ "note": "분야 뼈대 주제에 다시 걸기(ai-lab-retrofit 15장). links는 자동 후보이며 틀린 줄은 지우면 된다. 빌드 스크립트가 있는 저장소는 빌드 끝에 rehang.apply_overlay()가 이 파일을 적용한다.",
+ "topics": {
+  "lab:topic/clothing-folds": {
+   "ko": "옷 주름",
+   "en": "Clothing folds",
+   "domain": [
+    "art"
+   ],
+   "level": 2
+  },
+  "lab:topic/image-editing-inpainting": {
+   "ko": "이미지 편집·인페인팅",
+   "en": "Image editing and inpainting",
+   "domain": [
+    "genai"
+   ],
+   "level": 3
+  },
+  "lab:topic/light-shadow": {
+   "ko": "빛과 그림자",
+   "en": "Light and shadow",
+   "domain": [
+    "art"
+   ],
+   "level": 2
+  },
+  "lab:topic/prompt-for-images": {
+   "ko": "이미지 프롬프트 작성",
+   "en": "Prompting for images",
+   "domain": [
+    "genai"
+   ],
+   "level": 2
+  },
+  "lab:topic/style-transfer-drawing": {
+   "ko": "스타일 바꾸기",
+   "en": "Changing styles",
+   "domain": [
+    "art"
+   ],
+   "level": 2
+  }
+ },
+ "links": {
+  "lab:concept/bend-length": {
+   "topic": "lab:topic/clothing-folds",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "굽힘의 안팎 길이 차이"
+  },
+  "lab:concept/big-folds-first": {
+   "topic": "lab:topic/clothing-folds",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "큰 주름부터 고르기"
+  },
+  "lab:concept/contact-points": {
+   "topic": "lab:topic/clothing-folds",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "자세별 접점"
+  },
+  "lab:concept/crisp-diamond": {
+   "topic": "lab:topic/clothing-folds",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "빳빳한 천의 마름모 그림자"
+  },
+  "lab:concept/detail-level": {
+   "topic": "lab:topic/style-transfer-drawing",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "그림체와 정보량"
+  },
+  "lab:concept/ease": {
+   "topic": "lab:topic/clothing-folds",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "여유율"
+  },
+  "lab:concept/fabric-memory": {
+   "topic": "lab:topic/clothing-folds",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "버릇 주름"
+  },
+  "lab:concept/hem-rise": {
+   "topic": "lab:topic/clothing-folds",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "몸의 볼륨과 밑단"
+  },
+  "lab:concept/pleat-visibility": {
+   "topic": "lab:topic/clothing-folds",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "주름치마의 보이는 뒷면"
+  },
+  "lab:concept/skirt-airflow": {
+   "topic": "lab:topic/clothing-folds",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "걸을 때 치마의 공기"
+  },
+  "lab:concept/soft-edge": {
+   "topic": "lab:topic/light-shadow",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "그림자 경계 흐림"
+  },
+  "lab:concept/wrinkle-wavelength": {
+   "topic": "lab:topic/clothing-folds",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "두께와 주름 간격"
+  },
+  "lab:method/inpaint-mask": {
+   "topic": "lab:topic/image-editing-inpainting",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "가림 영역으로 옷만 다시 그리기"
+  },
+  "lab:method/layered-garments": {
+   "topic": "lab:topic/clothing-folds",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "겹쳐 입기의 주름 배분"
+  },
+  "lab:method/outfit-prompt": {
+   "topic": "lab:topic/prompt-for-images",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "옷 고정 문장"
+  },
+  "lab:method/shadow-instead-of-line": {
+   "topic": "lab:topic/light-shadow",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "선 대신 그림자"
+  },
+  "lab:method/shadow-order": {
+   "topic": "lab:topic/light-shadow",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "그림자 다섯 단계"
+  },
+  "lab:method/style-detail": {
+   "topic": "lab:topic/style-transfer-drawing",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "화풍별 주름의 양"
+  }
+ },
+ "retag": {
+  "from": [],
+  "to": [
+   "art"
+  ]
+ }
+}
