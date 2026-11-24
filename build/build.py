@@ -7,6 +7,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from content_a import P1, P2, P3
 from content_b import P4, P5, P6
 from content_make import MAKE
+from content_exercise import EX
 from make_requests import PROMPTS, CONV_OF, ATTACH_OF
 STYLES = [("pixel", "픽셀"), ("anime", "애니풍"), ("semireal", "반실사"), ("photo", "실사풍")]
 
@@ -344,12 +345,36 @@ def make_section(P):
 {bpart}<h4>결과에서 확인할 것</h4><ol>{chk}</ol>{tip}</div>"""
     return out + "</div></section>"
 
+def exercise_section(no, pre=""):
+    xs = EX.get(no)
+    if not xs:
+        return ""
+    def L(l):
+        return l if l.startswith("#") or not pre else pre + l
+    out = f"""<section class="room" id="exercise"><div class="wrap"><div class="roomno">{no}부 · 연습 문제</div><h2>연습 문제 — 프롬프트로 직접 풀기</h2>
+<div class="box"><p>'직접 만들어 보기'가 이 페이지 그림을 다시 만들어 보는 것이었다면, 연습 문제는 <b>새 상황을 스스로 풀어 보는</b> 것입니다. 정답 그림은 하나가 아니므로, 아래 '예상 결과'는 완성 예시 프롬프트로 실제로 만든 한 가지 예입니다.</p>
+<ol style="margin:6px 0 0;padding-left:20px"><li><b>원리로 먼저 예상하기</b> — 질문을 읽고 답을 떠올린 뒤 펼쳐 봅니다.</li><li><b>빈자리 채워 쓰기</b> — 틀의 [ ] 안을 내 말로 채워 프롬프트를 씁니다.</li><li><b>완성 예시와 비교</b> — 내 문장과 비교하고, 빠진 조각을 보탭니다.</li><li><b>만들고 확인하기</b> — 그림 생성 AI(Genspark 등)에 참고 그림을 첨부해 만들고, 확인표로 점검합니다.</li><li><b>막히면</b> — 흔한 실패와 고치는 문장을 같은 대화에 이어 붙입니다.</li></ol>
+<p class="hint" style="margin-top:8px">참고 그림 내려받기: {" · ".join(f'<a href="{pre}assets/refs/{f}" download>{f.replace(".png", "")}</a>' for f in REFS_DL)}</p></div>"""
+    for i, x in enumerate(xs, 1):
+        pred = "".join(f'<details style="margin:6px 0"><summary><b>{E(q)}</b></summary><p style="margin:6px 0 0 14px">{E(a)}</p></details>' for q, a in x["predict"])
+        chk = "".join(f"<li>{E(c)}" + (f' <a href="{L(l)}">원리 보기</a>' if l else "") + "</li>" for c, l in x["check"])
+        stuck = "".join(f'<tr><td>{E(a)}</td><td><code style="white-space:pre-wrap">{E(b)}</code></td></tr>' for a, b in x["stuck"])
+        ar = "16/9" if x["ratio"] == "16:9" else "2/3"
+        out += f"""<div class="failcard" id="ex{i}"><h3>연습 {i} · {E(x['title'])} <small class="muted" style="font-weight:500">({E(x['level'])})</small></h3><p>{E(x['goal'])}</p>
+<h4>① 원리로 먼저 예상하기</h4>{pred}
+<h4>② 빈자리 채워 쓰기</h4><div class="promptbox"><pre>{E(x['template'])}</pre></div>
+<h4>③ 완성 예시 프롬프트</h4><div class="promptbox"><p class="hint">첨부: {E(x['attach'])}</p><pre>{E(x['prompt'])}</pre><button type="button" class="btn copy">복사하기</button></div>
+<h4>④ 예상 결과</h4><div class="pair"><div>{art(x['key'], x['expect'], ar, "예상 결과 — 완성 예시 프롬프트로 만든 그림", pre)}</div><div class="box" style="background:#fff7ec;border-left:4px solid var(--orange)"><b>이렇게 나오면 성공</b><p style="margin:6px 0 0">{E(x['expect'])}</p></div></div>
+<h4>⑤ 결과에서 확인할 것</h4><ol>{chk}</ol>
+<h4>막히면</h4><div class="tbl"><table><thead><tr><th>증상</th><th>같은 대화에 이어 붙일 문장</th></tr></thead><tbody>{stuck}</tbody></table></div></div>"""
+    return out + "</div></section>"
+
 def build_part(P):
     t = f"{SERIES} {P['no']}부 — {P['title']}"
     s = head(t, P["desc"], P["og"], P["file"])
     navl = [(f"#{x['id']}", f"{k+1}단계") for k, x in enumerate(P["steps"])]
     if P.get("fails"): navl += [("#fails", "실패 8종")]
-    navl += [("#make", "직접 만들기"), ("#judge", "평가"), ("#sum", "정리"), (P["next"][0], "다음 →")]
+    navl += [("#make", "직접 만들기"), ("#exercise", "연습 문제"), ("#judge", "평가"), ("#sum", "정리"), (P["next"][0], "다음 →")]
     s += nav(navl)
     s += cover(P["cover_key"], P["cover_cap"], P["cover_cast"])
     s += f"""<header class="hero"><div class="wrap"><span class="kicker">{E(P['kicker'])}</span><h1>{E(P['title'])}</h1><p class="lead">{E(P['lead'])}</p>
@@ -365,6 +390,7 @@ def build_part(P):
         d = P["drift"]
         s += f'<div class="failcard" id="drift"><h3>{E(d["title"])}</h3>' + "".join(f"<p>{E(x)}</p>" for x in d["body"]) + '<p><span class="chip">연결된 원리</span><a href="05_ai_vfx.html#s1">5부 1단계 옷 고정 문장</a></p></div></div></section>'
     s += make_section(P)
+    s += exercise_section(P["no"])
     s += judge(P["judge"]) + summary(P) + outro(P)
     s += kg_block(P["file"].replace(".html", ""), [P["file"]])
     s += footer()
@@ -434,7 +460,7 @@ def build_practice():
     t = f"{SERIES} 7부 — 실전 연습장"
     d = "피팅룸(핏·체형), 소재 실험실(천 시뮬레이션), 옷 문장 공방(프롬프트), 진단 데스크(실패 맞히기) 네 곳을 직접 운영하며 1~6부를 함께 연습합니다."
     s = head(t, d, "og_07.jpg", "practice/index.html", pre)
-    s += nav([("#fitting", "피팅룸"), ("#fabric", "소재 실험실"), ("#workshop", "공방"), ("#desk", "진단 데스크"), ("#wrap", "마무리")], pre)
+    s += nav([("#fitting", "피팅룸"), ("#fabric", "소재 실험실"), ("#workshop", "공방"), ("#desk", "진단 데스크"), ("#exercise", "연습 문제"), ("#wrap", "마무리")], pre)
     s += cover("cover_07", "연구실 옷장 조종 책상 · 실전 연습장", [("haru", "e19"), ("doctor", "e16"), ("fruitfly", "e09"), ("jupanbot", "e16")], pre)
     s += f"""<header class="hero"><div class="wrap"><span class="kicker">7부 · 마지막 장</span><h1>실전 연습장</h1>
 <p class="lead">네 곳의 작업장을 직접 운영합니다. <span style="color:var(--green)">초록 조작판</span>은 주어진 환경, <span style="color:var(--blue)">파랑 조작판</span>은 내 결정입니다. 미션은 직접 조작해야 판정됩니다.</p>
@@ -476,7 +502,9 @@ def build_practice():
             ["3개 연속 정답", "8종 원인을 모두 한 번 이상 맞히기", "틀리지 않고 5개 맞히기"],
             [("06_failure_lab.html#s1", "6부 진단 순서"), ("06_failure_lab.html#fails", "6부 실패 8종")])
     s += f"""</div></section>
-<section id="wrap"><div class="wrap"><h2>마무리 — 네 작업장을 하나로 묶으면</h2>
+"""
+    s += exercise_section(7, pre)
+    s += f"""<section id="wrap"><div class="wrap"><h2>마무리 — 네 작업장을 하나로 묶으면</h2>
 <div class="box"><p>피팅룸에서 정한 여유율과 자세는 공방의 옷 문장에서 '핏'과 '동작·접점'이 되고, 소재 실험실의 값은 '소재' 문장과 VFX 소재표가 됩니다. 진단 데스크에서 틀린 원인은 대부분 앞의 세 곳 중 하나가 빠진 경우입니다. 옷 그림은 결국 <b>천이 어디에 걸려(접점), 얼마나 남아서(핏), 어떻게 접히는가(소재·동작)</b>의 기록입니다.</p>
 <p><b>실제 그림으로 이어 가기</b> — 옷 문장 공방에서 조립한 문장을 복사해 그림 생성 AI에 넣어 보세요. 결과는 각 부의 '프롬프트로 직접 만들어 보기' 확인표로 점검합니다: <a href="{pre}01_photo_to_drawing.html#make">1부</a> · <a href="{pre}02_fit.html#make">2부</a> · <a href="{pre}03_material.html#make">3부</a> · <a href="{pre}04_motion.html#make">4부</a> · <a href="{pre}05_ai_vfx.html#make">5부</a> · <a href="{pre}06_failure_lab.html#make">6부</a></p>
 <p class="hint">한계: 이 연습장의 주름 수·밑단 높이·천 계산은 원리를 보이기 위해 크게 단순화했습니다. 숫자는 교육용 예시이며, 실제 옷과 도구의 값과 다릅니다.</p></div>

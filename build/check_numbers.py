@@ -22,6 +22,7 @@ chk("4-1 v2", 2 * 2**2, 8); chk("4-1 v3", 2 * 3**2, 18)
 chk("4-2 cos60", math.cos(math.radians(60)), 0.5); chk("4-2 cos120", math.cos(math.radians(120)), -0.5)
 chk("4-3 90", 8 * math.pi / 2, 12.6, 0.06); chk("4-3 45", 8 * math.pi / 4, 6.3, 0.06); chk("4-3 다리", 12 * math.pi / 2, 18.8, 0.06)
 chk("5-2 전체", 512 * 768, 393216); chk("5-2 비율", 60000 / 393216, 0.153, 0.001); chk("5-2 1.5배", 1.5**2 * 60000 / 393216, 0.34, 0.005)
+chk("연습4-2 무릎", 12 * math.radians(120), 25.1, 0.06)
 for P in (P1, P2, P3, P4, P5, P6):
     J = P["judge"]; print("   ", P["no"], "부 평가", sum(J["a"][1]), ":", sum(J["b"][1]), J["result"][0][2][:16])
 print("전체 통과" if ok else "검산 실패"); sys.exit(0 if ok else 1)
