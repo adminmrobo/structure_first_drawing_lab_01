@@ -1,0 +1,8 @@
+order,group,file,ratio,status
+1,R01,e1_2_retry_simple,2:3,
+2,R01,e1_2_retry_semireal,2:3,
+3,R02,e2_1_retry,2:3,
+4,R03,e2_2_retry,2:3,
+5,R04,e6_2_retry_fail,2:3,
+6,R04,e6_2_retry_fixed,2:3,
+7,R05,e7_2_retry,16:9,
