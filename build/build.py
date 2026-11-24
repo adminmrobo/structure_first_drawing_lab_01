@@ -7,7 +7,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 from content_a import P1, P2, P3
 from content_b import P4, P5, P6
 from content_make import MAKE
-from content_exercise import EX
+from content_exercise import EX, RETRY
+from make_requests_retry import R as RETRY_R
 from make_requests import PROMPTS, CONV_OF, ATTACH_OF
 STYLES = [("pixel", "픽셀"), ("anime", "애니풍"), ("semireal", "반실사"), ("photo", "실사풍")]
 
@@ -345,6 +346,17 @@ def make_section(P):
 {bpart}<h4>결과에서 확인할 것</h4><ol>{chk}</ol>{tip}</div>"""
     return out + "</div></section>"
 
+def retry_box(x, pre=""):
+    if x["key"] not in RETRY:
+        return ""
+    gid, verdict, res = RETRY[x["key"]]
+    g = [r for r in RETRY_R if r[0] == gid][0]
+    imgs = '<div class="artrow">' + "".join(art(k, f"다시 시도한 결과 — {k}", "16/9" if ratio == "16:9" else "2/3", ("다시 시도 · " + step), pre) for k, ratio, att, step, prm in g[3]) + "</div>"
+    prompts = "".join(f'<div class="promptbox"><b>{E(k)}</b> <span class="hint">({E(step)} · 첨부: {E(att)})</span><pre>{E(prm)}</pre><button type="button" class="btn copy">복사하기</button></div>' for k, ratio, att, step, prm in g[3])
+    return f"""<div class="box" style="border-left:4px solid var(--teal)"><b>다시 시도한 결과 — {E(verdict)}</b>
+<p style="margin:6px 0"><b>바꾼 방법:</b> {E(g[2])}</p>{imgs}<p style="margin:8px 0 0">{E(res)}</p>
+<details style="margin-top:8px"><summary><b>다시 시도한 프롬프트 보기</b></summary>{prompts}</details></div>"""
+
 def exercise_section(no, pre=""):
     xs = EX.get(no)
     if not xs:
@@ -364,8 +376,8 @@ def exercise_section(no, pre=""):
 <h4>① 원리로 먼저 예상하기</h4>{pred}
 <h4>② 빈자리 채워 쓰기</h4><div class="promptbox"><pre>{E(x['template'])}</pre></div>
 <h4>③ 완성 예시 프롬프트</h4><div class="promptbox"><p class="hint">첨부: {E(x['attach'])}</p><pre>{E(x['prompt'])}</pre><button type="button" class="btn copy">복사하기</button></div>
-<h4>④ 예상 결과</h4><div class="pair"><div>{art(x['key'], x['expect'], ar, "완성 예시 프롬프트로 Genspark가 만든 실제 그림", pre)}</div><div class="box" style="background:#fff7ec;border-left:4px solid var(--orange)"><b>이렇게 나오면 성공</b><p style="margin:6px 0 0">{E(x['expect'])}</p>{('<p style="margin:10px 0 0"><b>실제로 나온 결과</b> — ' + E(x['res']) + '</p>') if x.get('res') else ''}</div></div>
-<h4>⑤ 결과에서 확인할 것</h4><ol>{chk}</ol>
+<h4>④ 예상 결과</h4><div class="pair"><div>{art(x['key'], x['expect'], ar, ("처음 결과 — 완성 예시 프롬프트로 Genspark가 만든 그림" if x['key'] in RETRY else "완성 예시 프롬프트로 Genspark가 만든 실제 그림"), pre)}</div><div class="box" style="background:#fff7ec;border-left:4px solid var(--orange)"><b>이렇게 나오면 성공</b><p style="margin:6px 0 0">{E(x['expect'])}</p>{('<p style="margin:10px 0 0"><b>' + ('처음 결과' if x['key'] in RETRY else '실제로 나온 결과') + '</b> — ' + E(x['res']) + '</p>') if x.get('res') else ''}</div></div>
+{retry_box(x, pre)}<h4>⑤ 결과에서 확인할 것</h4><ol>{chk}</ol>
 <h4>막히면</h4><div class="tbl"><table><thead><tr><th>증상</th><th>같은 대화에 이어 붙일 문장</th></tr></thead><tbody>{stuck}</tbody></table></div></div>"""
     return out + "</div></section>"
 

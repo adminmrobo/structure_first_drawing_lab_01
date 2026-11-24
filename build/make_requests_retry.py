@@ -38,16 +38,17 @@ R = [
     "Same image, same three characters, same positions and lighting. Change only Moa (left): she wears a thick camel CHUNKY KNIT SWEATER (turtleneck or crew neck) and a black skirt — NO cardigan, NO blouse, NO bow tie, NO apron this time. The knit has broad rounded folds and rounded soft shadows. She KEEPS her long ash-beige wavy hair, the white frilled headband and the white ribbon over her LEFT ear. Haru and Sia stay exactly the same. Still no text, no logos."),
  ]),
 ]
-HEAD = ("해설 페이지의 연습 문제 그림을 다시 만들어 줘(재시도).\n- 첨부한 참고 그림의 캐릭터 외형(얼굴·머리·색·장식)을 똑같이 지킬 것\n- 등장인물은 모두 20대 성인(박사는 성인 남성). 노출·교복 느낌 금지\n- 그림 안에 글자·숫자·로고 금지\n- 'Change only'가 있으면 그것만 바꾸고 나머지는 첨부 그림과 같게")
-md = "# 재요청 — 연습 문제 실패·부분 성공 5건 (그림 7장)\n\n성공한 그림은 그대로 둡니다. 실패한 그림도 페이지에 '처음 결과'로 남기고, 아래 재시도 결과를 '다시 시도한 결과'로 나란히 싣습니다.\n\n**Genspark에 먼저 붙여 넣기 ↓**\n```\n" + HEAD + "\n```\n"
-rows = []; n = 0
-for cid, title, how, items in R:
-    md += f"\n---\n# {cid} · {title}\n{how}\n"
-    for k, ratio, att, step, prompt in items:
-        n += 1; rows.append([n, cid, k, ratio, ""])
-        md += f"\n## {k} ({ratio}) — {step}\n첨부: {att}\n```\n{prompt}\n```\n"
-md += "\n---\n## 저장 이름\n`checklist.csv`의 이름 그대로(png·jpg). 재시도도 실패하면 그대로 주셔도 됩니다 — 두 번째 결과로 함께 싣습니다.\n"
-open(os.path.join(D, "README_재요청.md"), "w").write(md)
-with open(os.path.join(D, "checklist.csv"), "w", newline="") as f:
-    w = csv.writer(f); w.writerow(["order", "group", "file", "ratio", "status"]); w.writerows(rows)
-print(n)
+if __name__ == "__main__":
+    HEAD = ("해설 페이지의 연습 문제 그림을 다시 만들어 줘(재시도).\n- 첨부한 참고 그림의 캐릭터 외형(얼굴·머리·색·장식)을 똑같이 지킬 것\n- 등장인물은 모두 20대 성인(박사는 성인 남성). 노출·교복 느낌 금지\n- 그림 안에 글자·숫자·로고 금지\n- 'Change only'가 있으면 그것만 바꾸고 나머지는 첨부 그림과 같게")
+    md = "# 재요청 — 연습 문제 실패·부분 성공 5건 (그림 7장)\n\n성공한 그림은 그대로 둡니다. 실패한 그림도 페이지에 '처음 결과'로 남기고, 아래 재시도 결과를 '다시 시도한 결과'로 나란히 싣습니다.\n\n**Genspark에 먼저 붙여 넣기 ↓**\n```\n" + HEAD + "\n```\n"
+    rows = []; n = 0
+    for cid, title, how, items in R:
+        md += f"\n---\n# {cid} · {title}\n{how}\n"
+        for k, ratio, att, step, prompt in items:
+            n += 1; rows.append([n, cid, k, ratio, ""])
+            md += f"\n## {k} ({ratio}) — {step}\n첨부: {att}\n```\n{prompt}\n```\n"
+    md += "\n---\n## 저장 이름\n`checklist.csv`의 이름 그대로(png·jpg). 재시도도 실패하면 그대로 주셔도 됩니다 — 두 번째 결과로 함께 싣습니다.\n"
+    open(os.path.join(D, "README_재요청.md"), "w").write(md)
+    with open(os.path.join(D, "checklist.csv"), "w", newline="") as f:
+        w = csv.writer(f); w.writerow(["order", "group", "file", "ratio", "status"]); w.writerows(rows)
+    print(n)
