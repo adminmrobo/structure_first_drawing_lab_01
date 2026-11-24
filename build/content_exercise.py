@@ -195,6 +195,16 @@ RETRY = {
  "e1_2_haru_detail_levels": ("R01", "성공", "두 화풍을 따로 만들자 차이가 또렷해졌습니다. 단순풍은 굵은 선과 평평한 색에 주름 두세 개뿐이고, 반실사는 같은 자세에 천의 질감·솔기·주머니 바느질과 부드러운 그라데이션이 더해졌습니다. 주름의 위치는 그대로입니다."),
  "e2_1_doctor_loose_tee_arms_up": ("R02", "성공", "'두 치수 크게'로 바꾸자 어깨선이 위팔까지 내려오고 소매가 넓어졌으며, 겨드랑이와 가슴에 큰 처짐 주름이 생겼습니다. 헐렁한 핏이 한눈에 보입니다."),
  "e2_2_sia_hoodie_light_right": ("R03", "성공", "오른쪽 위 창에서 강한 햇빛이 들자 얼굴과 몸 왼쪽이 어두워지고, 후드티 주름마다 왼쪽 아래에 그림자가 생겼습니다. 빛을 '세게' 적은 것이 차이를 만들었습니다."),
- "e6_2_haru_crossed_no_contact": ("R04", "부분 성공", "팔을 내린 그림에서 팔만 고쳐 팔짱을 끼게 하자, 티셔츠가 그대로 남아 팔과 옷이 따로 노는 실패가 재현되었습니다. 다만 고친 그림도 팔 쪽으로 모이는 주름이 약해, 실패와 차이가 크지 않습니다. 그래서 이 그림을 첨부하고 '양쪽 어깨에서 팔뚝 쪽으로 비스듬한 주름, 팔꿈치 안쪽의 모인 주름'을 적어 한 번 더 요청했습니다. 두 번째 결과는 얼굴·자세는 그대로였지만 팔 쪽으로 끌려가는 주름은 여전히 생기지 않고 몸판 음영만 짙어져, 페이지에 싣지 않았습니다. 그림 도구는 '팔짱 낀 티셔츠'를 매끈하게 그리는 버릇이 강합니다. 결과는 매번 다르니 직접 확인하고, 접점으로 끌려가는 주름의 모습은 2부 '접점' 실험 패널에서 확인하세요."),
+ "e6_2_haru_crossed_no_contact": ("R04", "부분 성공", "팔을 내린 그림에서 팔만 고쳐 팔짱을 끼게 하자, 티셔츠가 그대로 남아 팔과 옷이 따로 노는 실패가 재현되었습니다. 다만 고친 그림도 팔 쪽으로 모이는 주름이 약해, 실패와 차이가 크지 않습니다. 그래서 이 그림을 첨부하고 '양쪽 어깨에서 팔뚝 쪽으로 비스듬한 주름, 팔꿈치 안쪽의 모인 주름'을 적어 한 번 더 요청했습니다. 두 번째 결과(아래 '두 번째 시도' 그림)는 얼굴·자세는 그대로였지만 팔 쪽으로 끌려가는 주름은 여전히 생기지 않고 몸판 음영만 짙어졌습니다. 실패한 그대로 싣습니다. 그림 도구는 '팔짱 낀 티셔츠'를 매끈하게 그리는 버릇이 강합니다. 결과는 매번 다르니 직접 확인하고, 접점으로 끌려가는 주름의 모습은 2부 '접점' 실험 패널에서 확인하세요."),
  "e7_2_trio_three_fabrics": ("R05", "성공", "모아만 니트 스웨터로 바뀌고 머리띠와 왼쪽 리본은 그대로 남았습니다. 이제 니트(둥근 주름)·셔츠(각진 주름)·블라우스(부드러운 주름) 세 소재가 나란히 비교됩니다."),
+}
+
+RETRY2 = {
+ "e6_2_haru_crossed_no_contact": ("e6_2_retry2_fixed", "두 번째 시도 — 실패", "앞 재시도 그림을 첨부하고 'Change only the t-shirt folds'로 어깨→팔뚝의 비스듬한 주름, 팔꿈치 안쪽의 모인 주름, 팔 위아래 천의 뭉침과 당김을 하나씩 적었습니다.", "주름은 늘지 않고 음영만 짙어졌습니다. 글로 주름을 더 세게 요청하는 방법은 두 번 모두 통하지 않았습니다. 이럴 때는 주름 방향을 선으로 대충 그린 밑그림을 첨부해 그 선을 따르게 하는 방법이 남아 있습니다.", """Same image, same character, same pose with arms crossed, same framing and lighting from the upper left. Change only the t-shirt folds:
+- strong, clearly visible diagonal folds running from BOTH shoulders down toward the crossed forearms, like the fabric is being pulled by the arms
+- deep gathered folds bunched inside both bent elbows
+- the fabric above the crossed arms bunches up into 2–3 thick horizontal folds, and the fabric below the arms is pulled tight with fan-shaped folds spreading toward the arms
+- each fold has a clear cel shadow on its lower right side (light from the upper left), with a darker second shadow in the deepest folds
+Keep the plain white t-shirt, rolled-up jeans, her face, hair (pink with navy streaks, navy streak in the bangs, two hair buns) and the plain off-white background.
+No text, no letters, no numbers, no logos, no watermark, no revealing clothing, not childlike, no school uniform."""),
 }

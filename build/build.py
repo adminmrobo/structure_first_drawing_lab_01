@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from content_a import P1, P2, P3
 from content_b import P4, P5, P6
 from content_make import MAKE
-from content_exercise import EX, RETRY
+from content_exercise import EX, RETRY, RETRY2
 from make_requests_retry import R as RETRY_R
 from make_requests import PROMPTS, CONV_OF, ATTACH_OF
 STYLES = [("pixel", "픽셀"), ("anime", "애니풍"), ("semireal", "반실사"), ("photo", "실사풍")]
@@ -355,7 +355,15 @@ def retry_box(x, pre=""):
     prompts = "".join(f'<div class="promptbox"><b>{E(k)}</b> <span class="hint">({E(step)} · 첨부: {E(att)})</span><pre>{E(prm)}</pre><button type="button" class="btn copy">복사하기</button></div>' for k, ratio, att, step, prm in g[3])
     return f"""<div class="box" style="border-left:4px solid var(--teal)"><b>다시 시도한 결과 — {E(verdict)}</b>
 <p style="margin:6px 0"><b>바꾼 방법:</b> {E(g[2])}</p>{imgs}<p style="margin:8px 0 0">{E(res)}</p>
-<details style="margin-top:8px"><summary><b>다시 시도한 프롬프트 보기</b></summary>{prompts}</details></div>"""
+<details style="margin-top:8px"><summary><b>다시 시도한 프롬프트 보기</b></summary>{prompts}</details></div>""" + retry2_box(x, pre)
+
+def retry2_box(x, pre=""):
+    if x["key"] not in RETRY2:
+        return ""
+    k, title, how, res, prm = RETRY2[x["key"]]
+    return f"""<div class="box" style="border-left:4px solid var(--amber,#d97706)"><b>{E(title)}</b>
+<p style="margin:6px 0"><b>바꾼 방법:</b> {E(how)}</p><div class="artrow">{art(k, "두 번째 시도 결과 — 팔짱은 꼈지만 팔 쪽으로 끌려가는 주름이 없는 티셔츠", "2/3", "두 번째 시도 · 실패한 그대로", pre)}</div><p style="margin:8px 0 0">{E(res)}</p>
+<details style="margin-top:8px"><summary><b>두 번째 시도 프롬프트 보기</b></summary><div class="promptbox"><b>{E(k)}</b> <span class="hint">(새 대화 · 첨부: e6_2_retry_fixed.png + haru_anime_base.png)</span><pre>{E(prm)}</pre><button type="button" class="btn copy">복사하기</button></div></details></div>"""
 
 def exercise_section(no, pre=""):
     xs = EX.get(no)
