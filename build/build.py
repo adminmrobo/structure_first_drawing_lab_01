@@ -364,7 +364,7 @@ def exercise_section(no, pre=""):
 <h4>① 원리로 먼저 예상하기</h4>{pred}
 <h4>② 빈자리 채워 쓰기</h4><div class="promptbox"><pre>{E(x['template'])}</pre></div>
 <h4>③ 완성 예시 프롬프트</h4><div class="promptbox"><p class="hint">첨부: {E(x['attach'])}</p><pre>{E(x['prompt'])}</pre><button type="button" class="btn copy">복사하기</button></div>
-<h4>④ 예상 결과</h4><div class="pair"><div>{art(x['key'], x['expect'], ar, "예상 결과 — 완성 예시 프롬프트로 만든 그림", pre)}</div><div class="box" style="background:#fff7ec;border-left:4px solid var(--orange)"><b>이렇게 나오면 성공</b><p style="margin:6px 0 0">{E(x['expect'])}</p></div></div>
+<h4>④ 예상 결과</h4><div class="pair"><div>{art(x['key'], x['expect'], ar, "완성 예시 프롬프트로 Genspark가 만든 실제 그림", pre)}</div><div class="box" style="background:#fff7ec;border-left:4px solid var(--orange)"><b>이렇게 나오면 성공</b><p style="margin:6px 0 0">{E(x['expect'])}</p>{('<p style="margin:10px 0 0"><b>실제로 나온 결과</b> — ' + E(x['res']) + '</p>') if x.get('res') else ''}</div></div>
 <h4>⑤ 결과에서 확인할 것</h4><ol>{chk}</ol>
 <h4>막히면</h4><div class="tbl"><table><thead><tr><th>증상</th><th>같은 대화에 이어 붙일 문장</th></tr></thead><tbody>{stuck}</tbody></table></div></div>"""
     return out + "</div></section>"
